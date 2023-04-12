@@ -8,9 +8,13 @@ program
   .version('0.0.1', '-V, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
   .option('-f, --format <type>', 'output format')
-  .argument('<filepath1> <filepath2>')
+  .arguments('<filepath1> <filepath2>')
   .action((filePath1, filePath2) => {
-    console.log(genDiff(filePath1, filePath2));
+    const extension1 = filePath1.split('.').at(-1);
+    const extension2 = filePath2.split('.').at(-1);
+    if ((extension1 === 'json') && (extension2 === 'json')) {
+      genDiff(filePath1, filePath2);
+    }
   });
 
-program.parse();
+program.parse(process.argv);
