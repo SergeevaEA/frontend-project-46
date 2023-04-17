@@ -1,8 +1,12 @@
 import { readFileSync } from 'fs';
+import { resolve } from 'path';
 
 const genDiff = (filePath1, filePath2) => {
-  const dataFile1 = readFileSync(filePath1, 'utf-8');
-  const dataFile2 = readFileSync(filePath2, 'utf-8');
+  const fullPath1 = resolve(filePath1);
+  const fullPath2 = resolve(filePath2);
+
+  const dataFile1 = readFileSync(fullPath1, 'utf-8');
+  const dataFile2 = readFileSync(fullPath2, 'utf-8');
 
   const parseDataFile1 = JSON.parse(dataFile1);
   const parseDataFile2 = JSON.parse(dataFile2);
@@ -16,15 +20,13 @@ const genDiff = (filePath1, filePath2) => {
   for (let i = 0; i < sortEntries.length - 1; i += 1) {
     if (sortEntries[i][0] === sortEntries[i + 1][0]) {
       if (sortEntries[i][1] === sortEntries[i + 1][1]) {
-        result += `    ${sortEntries[i][0]}: ${sortEntries[i][1]}\n`
+        result += `    ${sortEntries[i][0]}: ${sortEntries[i][1]}\n`;
+      } else if (Object.hasOwn(parseDataFile1, sortEntries[i][1])) {
+        result += `  - ${sortEntries[i][0]}: ${sortEntries[i][1]}\n`;
+        result += `  + ${sortEntries[i + 1][0]}: ${sortEntries[i + 1][1]}\n`;
       } else {
-        if (Object.hasOwn(parseDataFile1, sortEntries[i][1])) {
-          result += `  - ${sortEntries[i][0]}: ${sortEntries[i][1]}\n`;
-          result += `  + ${sortEntries[i + 1][0]}: ${sortEntries[i + 1][1]}\n`;
-        } else {
-          result += `  - ${sortEntries[i + 1][0]}: ${sortEntries[i + 1][1]}\n`;
-          result += `  + ${sortEntries[i][0]}: ${sortEntries[i][1]}\n`;
-        }
+        result += `  - ${sortEntries[i + 1][0]}: ${sortEntries[i + 1][1]}\n`;
+        result += `  + ${sortEntries[i][0]}: ${sortEntries[i][1]}\n`;
       }
     } else if ((i !== 0) && (sortEntries[i - 1][0] !== sortEntries[i][0])) {
       if (Object.hasOwn(parseDataFile1, sortEntries[i][0])) {
@@ -48,7 +50,9 @@ const genDiff = (filePath1, filePath2) => {
     }
   }
   result += '}';
-  console.log(result);
+  return result;
 };
+
+console.log(genDiff('__fixtures__/file1.json', '__fixtures__/file2.json'));
 
 export default genDiff;
