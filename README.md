@@ -8,7 +8,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/81540f3f279cbcf5f6cc/test_coverage)](https://codeclimate.com/github/SergeevaEA/frontend-project-44/test_coverage)
 
 ### Github Actions:  
-[![hexlet-check](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/hexlet-check.yml)
+[![tests and linter](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/testsAndLinter.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/testsAndLinter.yml)
 
 ### Asciinema:  
 
