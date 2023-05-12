@@ -11,11 +11,7 @@ program
   .option('-f, --format <type>', 'output format')
   .arguments('<filepath1> <filepath2>')
   .action((filePath1, filePath2) => {
-    const extension1 = filePath1.split('.').at(-1);
-    const extension2 = filePath2.split('.').at(-1);
-    if ((extension1 === 'json') && (extension2 === 'json')) {
-      genDiff(filePath1, filePath2);
-    }
+    genDiff(filePath1, filePath2);
   });
 
 program.parse(process.argv);

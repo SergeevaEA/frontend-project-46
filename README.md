@@ -12,7 +12,7 @@
 
 ### Asciinema:  
 
-https://asciinema.org/a/Xds6AI2pQWIdV6TG1xXzWWlOU
+1) https://asciinema.org/a/Xds6AI2pQWIdV6TG1xXzWWlOU
 
 ### Setup  
 
