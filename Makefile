@@ -1,4 +1,7 @@
-install:
+install: install-deps
+	npx simple-git-hooks
+
+install-deps:
 	npm ci
 
 test:
@@ -11,7 +14,7 @@ lint:
 	npx eslint .
 
 publish:
-	npm publish --dry-run
+	npm publish
 
 .PHONY: test
 
