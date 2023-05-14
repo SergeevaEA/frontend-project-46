@@ -1,31 +1,20 @@
 import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import _ from 'lodash';
-import yaml from 'js-yaml';
-
-const parse = (data, extension) => {
-  let parseData;
-  if (extension === 'json') {
-    parseData = JSON.parse(data);
-  } else if ((extension === 'yaml') || (extension === 'yml')) {
-    parseData = yaml.safeLoad(data);
-  }
-  return parseData;
-};
+import parsers from './parsers.js';
 
 const genDiff = (filePath1, filePath2) => {
   const fullPath1 = resolve(filePath1);
   const fullPath2 = resolve(filePath2);
 
-  const extension1 = extname('filePath1');
-  const extension2 = extname('filePath2');
+  const extension1 = extname(filePath1).slice(1);
+  const extension2 = extname(filePath2).slice(1);
 
   const dataFile1 = readFileSync(fullPath1, 'utf-8');
   const dataFile2 = readFileSync(fullPath2, 'utf-8');
 
-  const parseDataFile1 = parse(dataFile1, extension1);
-  const parseDataFile2 = parse(dataFile2, extension2);
-  console.log(parseDataFile2);
+  const parseDataFile1 = parsers(dataFile1, extension1);
+  const parseDataFile2 = parsers(dataFile2, extension2);
 
   const keys1 = Object.keys(parseDataFile1);
   const keys2 = Object.keys(parseDataFile2);
