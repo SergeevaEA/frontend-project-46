@@ -12,7 +12,8 @@
 
 ### Asciinema:  
 
-1) https://asciinema.org/a/Xds6AI2pQWIdV6TG1xXzWWlOU
+1) Difference between JSON files: https://asciinema.org/a/Xds6AI2pQWIdV6TG1xXzWWlOU
+2) Difference between YML files: https://asciinema.org/a/yrFYyWkXEOXyOsJjtRBfncGVn
 
 ### Setup  
 
