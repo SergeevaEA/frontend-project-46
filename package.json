@@ -3,8 +3,11 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/SergeevaEA/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions)",
   "main": "index.js",
+  "simple-git-hooks": {
+    "pre-push": "make lint"
+  },
   "scripts": {
-    "test": "node --test"
+    "test": "npx jest --bail"
   },
   "repository": {
     "type": "git",
