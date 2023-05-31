@@ -1,13 +1,13 @@
 # название
-name: Project test & lint
+name: Project test & build
 
 # целевые события для запуска
 # в данном случае это push и pull_request, в ветку master
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
   pull_request:
-    branches: [ master ]
+    branches: [ main ]
 
 # выполняемые действия
 jobs:
@@ -37,7 +37,7 @@ jobs:
         with:
           # в значение GITHUB_TOKEN помещается ссылка на ваш секрет в репозитории
           # в данном случае его название KEY
-          GITHUB_TOKEN: ${{ secrets.4b2f1b2c505a3b28ffdec2cea2ccb212564287ebe517c95de2186574a62cb425 }}
-          BRANCH: gh-pages
+          GITHUB_TOKEN: ${{ secrets.MyKey }}
+          BRANCH: main
           FOLDER: public
           CLEAN: true
