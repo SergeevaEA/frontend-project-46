@@ -8,7 +8,7 @@
 [![Test Coverage](https://api.codeclimate.com/v1/badges/ebe7dd484dff2e583919/test_coverage)](https://codeclimate.com/github/SergeevaEA/frontend-project-46/test_coverage)
 
 ### Github Actions:  
-[![tests and linter](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/testsAndLinter.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/testsAndLinter.yml)
+[![Node CI](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml)
 
 ### Asciinema:  
 
