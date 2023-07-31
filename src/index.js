@@ -16,27 +16,43 @@ const genDiff = (filePath1, filePath2) => {
   const parseDataFile1 = parsers(dataFile1, extension1);
   const parseDataFile2 = parsers(dataFile2, extension2);
 
-  const keys1 = Object.keys(parseDataFile1);
-  const keys2 = Object.keys(parseDataFile2);
-  const keys = _.union(keys1, keys2);
-  const sortKeys = _.sortBy(keys);
+  const tree = {};
 
-  const properties = [];
+  const diff = (data1, data2, parent = '*') => {
+    const keys1 = Object.keys(data1);
+    const keys2 = Object.keys(data2);
+    const keys = _.union(keys1, keys2);
+    const sortKeys = _.sortBy(keys);
 
-  sortKeys.forEach((key) => {
-    if (!Object.hasOwn(parseDataFile1, key)) {
-      properties.push(`  + ${key}: ${parseDataFile2[key]}`);
-    } else if (!Object.hasOwn(parseDataFile2, key)) {
-      properties.push(`  - ${key}: ${parseDataFile1[key]}`);
-    } else if (parseDataFile1[key] !== parseDataFile2[key]) {
-      properties.push(`  - ${key}: ${parseDataFile1[key]}`);
-      properties.push(`  + ${key}: ${parseDataFile2[key]}`);
-    } else {
-      properties.push(`    ${key}: ${parseDataFile1[key]}`);
-    }
-  });
-
-  const result = `{\n${properties.join('\n')}\n}`;
+    sortKeys.forEach((key) => {
+      if (!Object.hasOwn(data1, key)) {
+        tree[key] = { parent, diffType: 'added (+)', value: data2[key] };
+      } else if (!Object.hasOwn(data2, key)) {
+        tree[key] = { parent, diffType: 'deleted (-)', value: data1[key] };
+      } else if ((Object.hasOwn(data1, key)) && (Object.hasOwn(data2, key))) {
+        if ((!_.isObject(data1[key])) && (!_.isObject(data2[key]))) {
+          if (data1[key] !== data2[key]) {
+            tree[key] = {
+              parent, diffType: 'changed (- -> +)', value1: data1[key], value2: data2[key],
+            };
+          } else {
+            tree[key] = {
+              parent, diffType: 'unchanged (null)', value: data1[key],
+            };
+          }
+        } else if ((_.isObject(data1[key])) && (_.isObject(data2[key]))) {
+          tree[key] = { parent };
+          diff(data1[key], data2[key], key);
+        } else {
+          tree[key] = {
+            parent, diffType: 'changed (- -> +)', value1: data1[key], value2: data2[key],
+          };
+        }
+      }
+    });
+    return tree;
+  };
+  const result = diff(parseDataFile1, parseDataFile2);
   console.log(result);
   return result;
 };

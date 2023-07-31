@@ -5,7 +5,7 @@ import fs from 'fs';
 import genDiff from '../src/index.js';
 
 const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const __dirname = dirname(__filename); // __tests__
 
 const getPath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 
