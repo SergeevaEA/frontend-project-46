@@ -28,20 +28,16 @@ const genDiff = (filePath1, filePath2) => {
         diffTree[key] = { diffType: 'added (+)', value: data2[key] };
       } else if (!Object.hasOwn(data2, key)) {
         diffTree[key] = { diffType: 'deleted (-)', value: data1[key] };
-      } else if ((Object.hasOwn(data1, key)) && (Object.hasOwn(data2, key))) {
-        if ((!_.isObject(data1[key])) && (!_.isObject(data2[key]))) {
-          if (data1[key] !== data2[key]) {
-            diffTree[key] = { diffType: 'changed (- -> +)', value1: data1[key], value2: data2[key] };
-          } else {
-            diffTree[key] = { diffType: 'unchanged (null)', value: data1[key] };
-          }
-        } else if ((_.isObject(data1[key])) && (!_.isObject(data2[key]))) {
+      } else if ((_.isObject(data1[key])) && (_.isObject(data2[key]))) {
+        diffTree[key] = diff(data1[key], data2[key]);
+      } else if ((!_.isObject(data1[key])) && (!_.isObject(data2[key]))) {
+        if (data1[key] !== data2[key]) {
           diffTree[key] = { diffType: 'changed (- -> +)', value1: data1[key], value2: data2[key] };
-        } else if ((!_.isObject(data1[key])) && (_.isObject(data2[key]))) {
-          diffTree[key] = { diffType: 'changed (- -> +)', value1: data1[key], value2: data2[key] };
-        } else if ((_.isObject(data1[key])) && (_.isObject(data2[key]))) {
-          diffTree[key] = diff(data1[key], data2[key]);
+        } else {
+          diffTree[key] = { diffType: 'unchanged (null)', value: data1[key] };
         }
+      } else {
+        diffTree[key] = { diffType: 'changed (- -> +)', value1: data1[key], value2: data2[key] };
       }
     });
     return diffTree;
