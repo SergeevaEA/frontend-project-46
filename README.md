@@ -12,13 +12,17 @@
 
 ### Asciinema:  
 
-1) Difference between JSON files: 
+1) Нахождение различий между двумя JSON файлами (плоские структуры): 
 
 [![asciicast](https://asciinema.org/a/Xds6AI2pQWIdV6TG1xXzWWlOU.svg)](https://asciinema.org/a/Xds6AI2pQWIdV6TG1xXzWWlOU)
 
-2) Difference between YML files: 
+2) Нахождение различий между двумя YML файлами (плоские структуры): 
 
 [![asciicast](https://asciinema.org/a/yrFYyWkXEOXyOsJjtRBfncGVn.svg)](https://asciinema.org/a/yrFYyWkXEOXyOsJjtRBfncGVn)
+
+3) Нахождение различий между JSON и YML файлами (вложенные структуры) с использованием форматтера stylish.
+
+[![asciicast](https://asciinema.org/a/5lQ4XJDml5bTYKWN6L818WVVD.svg)](https://asciinema.org/a/5lQ4XJDml5bTYKWN6L818WVVD)
 
 ### Setup  
 
