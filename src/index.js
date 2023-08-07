@@ -2,9 +2,11 @@ import { readFileSync } from 'fs';
 import { resolve, extname } from 'path';
 import _ from 'lodash';
 import parsers from './parsers.js';
-import stylish from './stylish.js';
+import stylish from './formatters/stylish.js';
+import plain from './formatters/plain.js';
+// import json from './formatters/json.js';
 
-const genDiff = (filePath1, filePath2, format = 'stylish') => {
+const genDiff = (filePath1, filePath2, formatterName = 'stylish') => {
   const fullPath1 = resolve(filePath1);
   const fullPath2 = resolve(filePath2);
 
@@ -45,9 +47,13 @@ const genDiff = (filePath1, filePath2, format = 'stylish') => {
   };
 
   let result;
-  if (format === 'stylish') {
+  if (formatterName === 'stylish') {
     result = stylish(diff(parseDataFile1, parseDataFile2));
-  }
+  } else if (formatterName === 'plain') {
+    result = plain(diff(parseDataFile1, parseDataFile2));
+  } /* else if (formatterName === 'json') {
+    result = json(diff(parseDataFile1, parseDataFile2));
+  } */
   console.log(result);
   return result;
 };

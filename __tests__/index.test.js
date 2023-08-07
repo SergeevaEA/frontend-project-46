@@ -9,16 +9,41 @@ const __dirname = dirname(__filename); // __tests__
 
 const getPath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 
-const result = fs.readFileSync(`${__dirname}/../__fixtures__/result.txt`, 'utf-8');
+const stylishDiff = fs.readFileSync(`${__dirname}/../__fixtures__/stylishDiff.txt`, 'utf-8');
+const plainDiff = fs.readFileSync(`${__dirname}/../__fixtures__/plainDiff.txt`, 'utf-8');
 
-test('generate difference between JSONs files', () => {
-  expect(genDiff(getPath('file1.json'), getPath('file2.json'))).toEqual(result);
+test('generate difference between JSONs files without formatter', () => {
+  expect(genDiff(getPath('file1.json'), getPath('file2.json'))).toEqual(stylishDiff);
 });
 
-test('generate difference between YML/YAMLs files', () => {
-  expect(genDiff(getPath('file1.yml'), getPath('file2.yaml'))).toEqual(result);
+test('generate difference between YML/YAMLs files without formatter', () => {
+  expect(genDiff(getPath('file1.yml'), getPath('file2.yaml'))).toEqual(stylishDiff);
 });
 
-test('generate difference between JSON and YML/YAML files', () => {
-  expect(genDiff(getPath('file1.json'), getPath('file2.yaml'))).toEqual(result);
+test('generate difference between JSON and YML/YAML files without formatter', () => {
+  expect(genDiff(getPath('file1.json'), getPath('file2.yaml'))).toEqual(stylishDiff);
+});
+
+test('generate difference between JSONs files with stylish formatter', () => {
+  expect(genDiff(getPath('file1.json'), getPath('file2.json'), 'stylish')).toEqual(stylishDiff);
+});
+
+test('generate difference between YML/YAMLs files with stylish formatter', () => {
+  expect(genDiff(getPath('file1.yml'), getPath('file2.yaml'), 'stylish')).toEqual(stylishDiff);
+});
+
+test('generate difference between JSON and YML/YAML files with stylish formatter', () => {
+  expect(genDiff(getPath('file1.json'), getPath('file2.yaml'), 'stylish')).toEqual(stylishDiff);
+});
+
+test('generate difference between JSONs files with plain formatter', () => {
+  expect(genDiff(getPath('file1.json'), getPath('file2.json'), 'plain')).toEqual(plainDiff);
+});
+
+test('generate difference between YML/YAMLs files with plain formatter', () => {
+  expect(genDiff(getPath('file1.yml'), getPath('file2.yaml'), 'plain')).toEqual(plainDiff);
+});
+
+test('generate difference between JSON and YML/YAML files with plain formatter', () => {
+  expect(genDiff(getPath('file1.json'), getPath('file2.yaml'), 'plain')).toEqual(plainDiff);
 });
