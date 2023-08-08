@@ -8,12 +8,10 @@ program
   .description('Compares two configuration files and shows a difference.')
   .version('0.0.1', '-V, --version', 'output the version number')
   .helpOption('-h, --help', 'output usage information')
-  .option('-f, --format <type>', 'output format', 'add the specified type of cheese', 'stylish')
+  .option('-f, --format <type>', 'output format(choices: stylish, plain, json)', 'stylish')
   .arguments('<filepath1> <filepath2>')
-  .action((filePath1, filePath2) => {
-    genDiff(filePath1, filePath2);
-  });
+  .action((file1, file2) => console.log(genDiff(file1, file2, program.opts().format)));
 
-program.parse(process.argv);
+program.parse();
 
 export default genDiff;
