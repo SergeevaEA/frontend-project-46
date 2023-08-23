@@ -11,6 +11,7 @@ const getPath = (filename) => join(__dirname, '..', '__fixtures__', filename);
 
 const stylishDiff = fs.readFileSync(`${__dirname}/../__fixtures__/stylishDiff.txt`, 'utf-8');
 const plainDiff = fs.readFileSync(`${__dirname}/../__fixtures__/plainDiff.txt`, 'utf-8');
+const jsonDiff = fs.readFileSync(`${__dirname}/../__fixtures__/jsonDiff.txt`, 'utf-8');
 
 test('generate difference between JSONs files without formatter', () => {
   expect(genDiff(getPath('file1.json'), getPath('file2.json'))).toEqual(stylishDiff);
@@ -33,5 +34,5 @@ test('generate difference with plain formatter', () => {
 });
 
 test('generate difference with json formatter', () => {
-  expect(genDiff(getPath('file1.yml'), getPath('file2.json'), 'json')).toEqual(plainDiff);
+  expect(genDiff(getPath('file1.yml'), getPath('file2.json'), 'json')).toEqual(jsonDiff);
 });
