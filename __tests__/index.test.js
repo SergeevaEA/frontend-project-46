@@ -25,13 +25,9 @@ test('generate difference between JSON and YML/YAML files without formatter', ()
 });
 
 test('generate difference with stylish formatter', () => {
-  expect(genDiff(getPath('file1.json'), getPath('file2.json'), 'stylish')).toEqual(stylishDiff);
+  expect(genDiff(getPath('file1.json'), getPath('file2.yaml'), 'stylish')).toEqual(stylishDiff);
 });
 
 test('generate difference with plain formatter', () => {
-  expect(genDiff(getPath('file1.json'), getPath('file2.json'), 'plain')).toEqual(plainDiff);
+  expect(genDiff(getPath('file1.json'), getPath('file2.yaml'), 'plain')).toEqual(plainDiff);
 });
-
-/* test('generate difference with json formatter', () => {
-  expect(genDiff(getPath('file1.json'), getPath('file2.json'), 'json')).toEqual(plainDiff);
-}); */
