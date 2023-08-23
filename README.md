@@ -24,6 +24,10 @@
 
 [![asciicast](https://asciinema.org/a/5lQ4XJDml5bTYKWN6L818WVVD.svg)](https://asciinema.org/a/5lQ4XJDml5bTYKWN6L818WVVD)
 
+4) Нахождение различий между JSON и YML файлами (вложенные структуры) с использованием форматтера plain.
+
+[![asciicast](https://asciinema.org/a/6SBr4MlYlnacc8oCIlv1CcKHe.svg)](https://asciinema.org/a/6SBr4MlYlnacc8oCIlv1CcKHe)
+
 ### Setup  
 
 make install
