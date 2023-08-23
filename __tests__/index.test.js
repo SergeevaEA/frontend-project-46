@@ -31,3 +31,7 @@ test('generate difference with stylish formatter', () => {
 test('generate difference with plain formatter', () => {
   expect(genDiff(getPath('file1.json'), getPath('file2.yaml'), 'plain')).toEqual(plainDiff);
 });
+
+test('generate difference with json formatter', () => {
+  expect(genDiff(getPath('file1.yml'), getPath('file2.json'), 'json')).toEqual(plainDiff);
+});
