@@ -7,32 +7,29 @@ const makeStringValue = (value) => {
   return typeof value === 'string' ? `'${value}'` : String(value);
 };
 
-const plain = (diffTree) => {
-  const iter = (data, previousKey) => {
-    const combinedKey = previousKey.length !== 0 ? `${previousKey.join('.')}${'.'}` : '';
-    const properties = [];
-    Object.values(data).forEach((value) => {
-      Object.keys(value).forEach((key) => {
-        if (!Array.isArray(value[key])) {
-          const value1 = makeStringValue(value[key].value1);
-          const value2 = makeStringValue(value[key].value2);
-          if (value[key].diffType === 'added (+)') {
-            properties.push(`Property '${combinedKey}${key}' was added with value: ${value1}`);
-          } else if (value[key].diffType === 'deleted (-)') {
-            properties.push(`Property '${combinedKey}${key}' was removed`);
-          } else if (value[key].diffType === 'changed (- -> +)') {
-            properties.push(`Property '${combinedKey}${key}' was updated. From ${value1} to ${value2}`);
-          }
-        } else {
-          previousKey.push(key);
-          properties.push(iter(value[key], previousKey));
-          previousKey = [];
+const iter = (tree, key = '') => {
+  const result = tree
+    .filter((node) => node.type !== 'unchanged')
+    .flatMap((node) => {
+      const keys = [...key, node.key];
+      const path = keys.join('.');
+      switch (node.type) {
+        case 'nested': {
+          return iter(node.value, keys);
         }
-      });
+        case 'deleted': {
+          return `Property '${path}' was removed`;
+        }
+        case 'added': {
+          return `Property '${path}' was added with value: ${makeStringValue(node.value)}`;
+        }
+        case 'changed': {
+          return `Property '${path}' was updated. From ${makeStringValue(node.value1)} to ${makeStringValue(node.value2)}`;
+        }
+        default: throw new Error(`Error: ${node.key} - unknown node type`);
+      }
     });
-    return `${properties.join('\n')}`;
-  };
-  return iter(diffTree, []);
+  return result;
 };
 
-export default plain;
+export default (diff) => iter(diff).join('\n');
