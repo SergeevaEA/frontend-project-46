@@ -1,4 +1,4 @@
-### Github Actions:  
+### Github Actions:
 [![Node CI](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml)
 
 # Difference calculator
@@ -58,7 +58,7 @@ make install
 make test
 ```
 
-## Команды для работы с программой
+## Команды для работы с программой:
 
 * Команда для вывода справочной информации о программе: gendiff -h
 * Команда для нахождения различий между двумя файлами: gendiff file1.json file2.yml
