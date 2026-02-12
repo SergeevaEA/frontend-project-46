@@ -1,16 +1,21 @@
-### Hexlet tests and linter status:  
-[![Actions Status](https://github.com/SergeevaEA/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions)
-
-### CodeClimate:  
-[![Maintainability](https://api.codeclimate.com/v1/badges/ebe7dd484dff2e583919/maintainability)](https://codeclimate.com/github/SergeevaEA/frontend-project-46/maintainability)
-
-### Test Coverage:  
-[![Test Coverage](https://api.codeclimate.com/v1/badges/ebe7dd484dff2e583919/test_coverage)](https://codeclimate.com/github/SergeevaEA/frontend-project-46/test_coverage)
-
 ### Github Actions:  
 [![Node CI](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml)
 
-### Asciinema:  
+# Difference calculator
+
+Консольная утилита, которая сравнивает данные YAML и JSON форматов и выводит разницу между ними.
+
+## Технологический стек
+
+JavaScript, ESLint, Jest, lodash, js-yaml, commander
+
+## Выполненные задачи
+
+* реализовала вывод справочной информации о программе
+* реализовала поиск различий между данными из двух файлов (плоские и вложенные структуры данных, поддерживаются форматы yaml, json)
+* реализовала несколько форматов вывода результатов сравнения
+
+## Демонстрация работы проекта
 
 1) Нахождение различий между двумя JSON файлами (плоские структуры): 
 
@@ -32,10 +37,31 @@
 
 [![asciicast](https://asciinema.org/a/X4fiGpZsMKMEjU1XBgTD3dVm6.svg)](https://asciinema.org/a/X4fiGpZsMKMEjU1XBgTD3dVm6)
 
-### Setup  
+## Установка
 
+Клонировать репозиторий:
+
+```bash
+git clone https://github.com/SergeevaEA/frontend-project-46.git
+cd frontend-project-46
+```
+
+Установить зависимости:
+
+```bash
 make install
+```
 
-### Run tests  
+Запуск тестов
 
+```bash
 make test
+```
+
+## Команды для работы с программой
+
+* Команда для вывода справочной информации о программе: gendiff -h
+* Команда для нахождения различий между двумя файлами: gendiff file1.json file2.yml
+* Нахождение различий между файлами с использованием форматтера stylish: gendiff -f stylish file1.json file2.yml
+* Нахождение различий между файлами с использованием форматтера plain: gendiff -f plain file1.json file2.yml
+* Нахождение различий между файлами с использованием форматтера json: gendiff -f json file1.json file2.yml
