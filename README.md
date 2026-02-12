@@ -1,3 +1,6 @@
+### Hexlet tests and linter status:  
+[![Actions Status](https://github.com/SergeevaEA/frontend-project-46/workflows/hexlet-check/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions)
+
 ### Github Actions:
 [![Node CI](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml)
 
