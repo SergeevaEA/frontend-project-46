@@ -4,6 +4,9 @@
 ### Github Actions:
 [![Node CI](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml/badge.svg)](https://github.com/SergeevaEA/frontend-project-46/actions/workflows/main.yml)
 
+### Качество кода:
+[![Maintainability](https://qlty.sh/gh/SergeevaEA/projects/frontend-project-46/maintainability.svg)](https://qlty.sh/gh/SergeevaEA/projects/frontend-project-46)
+
 # Difference calculator
 
 Консольная утилита, которая сравнивает данные YAML и JSON форматов и выводит разницу между ними.
